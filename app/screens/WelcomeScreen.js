@@ -1,4 +1,6 @@
 import { StyleSheet, View, SafeAreaView, ImageBackground, Image, Text } from "react-native";
+import AppText from "../components/AppText";
+import colors from "../config/colors";
 
 
 const WelcomeScreen = () => {
@@ -52,12 +54,12 @@ const styles = StyleSheet.create({
     registerBtn: {
       width: '100%',
       height: "50%",
-      backgroundColor: "blue",
+      backgroundColor: colors.secondary,
     },
     loginBtn: {
       width: '100%',
       height: "50%",
-      backgroundColor: "red",
+      backgroundColor: colors.primary,
     },
   });
 
