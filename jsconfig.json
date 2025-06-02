@@ -1,0 +1,8 @@
+// jsconfig.json tells VScode to treat this project as a JavaScript project
+// By default VSCode treats it as a TypeScript project
+
+{
+    "exclude": [
+        "node_modules",
+    ],
+}
