@@ -1,66 +1,54 @@
-import { StyleSheet, View, SafeAreaView, ImageBackground, Image, Text } from "react-native";
+import { StyleSheet, View, TouchableOpacity, ImageBackground, Image, Text } from "react-native";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
-
+import CustomButton from "../components/CustomButton";
 
 const WelcomeScreen = () => {
   return (
     <ImageBackground
-    style={styles.container}
-    source={require("../assets/background.jpg")}
-    resizeMode="cover"
-  >
-    <View style={styles.logoContainer}>
-      <Image source={require("../assets/logo-red.png")} style={styles.logo} />
-      <Text style={styles.logoText}>This is the logo</Text>
-    </View>
+      style={styles.background}
+      source={require("../assets/background.jpg")}
+      resizeMode="cover"
+      blurRadius={10}
+    >
+      <View style={styles.logoContainer}>
+        <Image style={styles.logo} source={require("../assets/logo-red.png")} />
+        <Text style={styles.tagline}>Sell What You Don't Need</Text>
+      </View>
 
-    <View style={styles.buttons}>
-      <View style={styles.registerBtn}/>
-      <View style={styles.loginBtn}/>
-    </View>
-  </ImageBackground>
-  )
-}
-
+      <View style={styles.buttonsContainer}>
+        <CustomButton title="login" />
+        <CustomButton title="register" color="secondary" />
+      </View>
+    </ImageBackground>
+  );
+};
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    logoContainer: {
-      width: 100,
-      height: 100,
-      position: "absolute",
-      top: 100,
-      left: "50%",
-      marginLeft: -50, // Half the width to center it
-    },
-    logo: {
-      width: "100%",
-      height: "100%",
-    },
-    logoText: {
-      textAlign: "center",
-      marginTop: 20,
-    },
-    buttons: {
-      width: "100%",
-      height: 200,
-      position: "absolute",
-      bottom: 0,
-      display: "flex",
-    },
-    registerBtn: {
-      width: '100%',
-      height: "50%",
-      backgroundColor: colors.secondary,
-    },
-    loginBtn: {
-      width: '100%',
-      height: "50%",
-      backgroundColor: colors.primary,
-    },
-  });
+  background: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  logoContainer: {
+    position: "absolute",
+    top: 80,
+    alignItems: "center",
+  },
+  logo: {
+    width: 100,
+    height: 100,
+  },
+  tagline: {
+    fontSize: 25,
+    fontWeight: "600",
+    color: colors.black,
+    paddingVertical: 20,
+  },
+  buttonsContainer: {
+    width: "100%",
+    padding: 20,
+  },
+});
 
-export default WelcomeScreen
+export default WelcomeScreen;
