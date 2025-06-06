@@ -1,12 +1,13 @@
-import { StyleSheet, View, TouchableWithoutFeedback, Modal, Button } from "react-native";
+import { StyleSheet, View, TouchableWithoutFeedback, Modal, Button, FlatList } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import defaultStyles from "../config/styles";
 import CustomText from "./CustomText";
 import { useState } from "react";
 import Screen from "./Screen";
+import PickerItem from "./PickerItem";
 
 //--------------------------- Main function ---------------------------
-const CustomPicker = ({ icon, placeholder, ...otherProps }) => {
+const CustomPicker = ({ icon, items, placeholder}) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
@@ -31,6 +32,11 @@ const CustomPicker = ({ icon, placeholder, ...otherProps }) => {
       <Modal visible={modalVisible} animationType="slide">
         <Screen>
           <Button title="Close" onPress={() => setModalVisible(false)} />
+          <FlatList
+            data={items}
+            keyExtractor={(item) => item.value.toString()}
+            renderItem={({item}) => <PickerItem label={item.label} onPress={() => console.log(item)}/>}
+          />
         </Screen>
       </Modal>
     </>
