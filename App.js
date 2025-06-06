@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { TextInput, View } from "react-native";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -11,9 +11,16 @@ import Icon from "./app/components/Icon";
 import ListItem from "./app/components/ListItem";
 import AccountScreen from "./app/screens/AccountScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
+import CustomTextInput from "./app/components/CustomTextInput";
 
 export default function App() {
   return (
-   <ListingsScreen/>
+    <Screen>
+      <CustomTextInput
+      // onChangeText={}
+        placeholder="First Name"
+        icon="email"
+      />
+    </Screen>
   );
 }
