@@ -1,5 +1,5 @@
 import { View, Image, StyleSheet, TouchableHighlight } from "react-native";
-import AppText from "./AppText";
+import CustomText from "./CustomText";
 import colors from "../config/colors";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -20,8 +20,8 @@ export default function ListItem({
             {iconComponent}
             {image && <Image source={image} style={styles.image} />}
             <View style={styles.detailsContainer}>
-              <AppText style={styles.title}>{title}</AppText>
-              {subTitle && <AppText style={styles.subTitle}>{subTitle}</AppText>}
+              <CustomText style={styles.title}>{title}</CustomText>
+              {subTitle && <CustomText style={styles.subTitle}>{subTitle}</CustomText>}
             </View>
           </View>
         </TouchableHighlight>

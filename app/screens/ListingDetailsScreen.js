@@ -1,5 +1,5 @@
 import { View, Text, Image, StyleSheet } from "react-native";
-import AppText from "../components/AppText";
+import CustomText from "../components/CustomText";
 import colors from "../config/colors";
 import ListItem from "../components/ListItem";
 
@@ -8,8 +8,8 @@ export default function ListingDetailsScreen() {
     <View>
       <Image style={styles.image} source={require("../assets/jacket.jpg")} />
       <View style={styles.detailsContainer}>
-        <AppText style={styles.title}>Red jacket for sale</AppText>
-        <AppText style={styles.price}>DKK 100</AppText>
+        <CustomText style={styles.title}>Red jacket for sale</CustomText>
+        <CustomText style={styles.price}>DKK 100</CustomText>
       </View>
       <View style={styles.userContainer}>
         <ListItem
@@ -42,5 +42,5 @@ const styles = StyleSheet.create({
   },
   userContainer: {
     marginVertical: 40,
-  }
+  },
 });

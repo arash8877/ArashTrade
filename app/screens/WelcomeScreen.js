@@ -1,5 +1,5 @@
 import { StyleSheet, View, TouchableOpacity, ImageBackground, Image, Text } from "react-native";
-import AppText from "../components/AppText";
+import CustomText from "../components/CustomText";
 import colors from "../config/colors";
 import CustomButton from "../components/CustomButton";
 
