@@ -30,6 +30,7 @@ const AccountScreen = () => {
         subTitle="React Native Developer"
         image={require("../assets/mosh.jpg")}
       />
+      {/* <View style={styles.container}> */}
       <FlatList
         data={menuItems}
         keyExtractor={(menuItem) => menuItem.title}
@@ -43,10 +44,10 @@ const AccountScreen = () => {
           />
         )}
       />
-      <ListItem
-         title="Log Out"
-         iconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}     
-      />
+      {/* </View> */}
+      {/* <View style={styles.container}> */}
+      <ListItem title="Log Out" iconComponent={<Icon name="logout" backgroundColor="#ffe66d" />} />
+      {/* </View> */}
     </Screen>
   );
 };
@@ -58,6 +59,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.light,
   },
   container: {
-    marginVertical: 20,
+    backgroundColor: "yellow",
   },
 });
