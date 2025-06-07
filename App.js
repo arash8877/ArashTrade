@@ -14,25 +14,11 @@ import ListingsScreen from "./app/screens/ListingsScreen";
 import CustomTextInput from "./app/components/CustomTextInput";
 import { useState } from "react";
 import CustomPicker from "./app/components/CustomPicker";
+import LoginScreen from "./app/screens/LoginScreen";
 
-const categories = [
-  { label: "Furniture", value: 1, icon: "floor-lamp" },
-  { label: "Clothing", value: 2, icon: "shoe-heel" },
-  { label: "Cameras", value: 3, icon: "camera" },
-];
 
 export default function App() {
-  const [category, setCategory] = useState(categories[0]);
   return (
-    <Screen>
-      <CustomPicker
-        selectedItem={category}
-        onSelectItem={(item) => setCategory(item)}
-        items={categories}
-        icon="apps"
-        placeholder="category"
-      />
-      <CustomTextInput icon="email" placeholder="Email" />
-    </Screen>
+    <LoginScreen/>
   );
 }
