@@ -15,8 +15,6 @@ import CustomTextInput from "./app/components/CustomTextInput";
 import { useState } from "react";
 import CustomPicker from "./app/components/CustomPicker";
 
-
-
 const categories = [
   { label: "Furniture", value: 1, icon: "floor-lamp" },
   { label: "Clothing", value: 2, icon: "shoe-heel" },
@@ -24,10 +22,17 @@ const categories = [
 ];
 
 export default function App() {
+  const [category, setCategory] = useState(categories[0]);
   return (
     <Screen>
-      <CustomPicker items={categories} icon='apps' placeholder='category'/>
-      <CustomTextInput icon='email' placeholder='Email' />
+      <CustomPicker
+        selectedItem={category}
+        onSelectItem={(item) => setCategory(item)}
+        items={categories}
+        icon="apps"
+        placeholder="category"
+      />
+      <CustomTextInput icon="email" placeholder="Email" />
     </Screen>
   );
 }

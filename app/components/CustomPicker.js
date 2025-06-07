@@ -7,7 +7,7 @@ import Screen from "./Screen";
 import PickerItem from "./PickerItem";
 
 //--------------------------- Main function ---------------------------
-const CustomPicker = ({ icon, items, placeholder}) => {
+const CustomPicker = ({ icon, items, onSelectItem, selectedItem, placeholder }) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
@@ -21,7 +21,9 @@ const CustomPicker = ({ icon, items, placeholder}) => {
               style={styles.icon}
             />
           )}
-          <CustomText style={styles.text}>{placeholder}</CustomText>
+          <CustomText style={styles.text}>
+            {selectedItem ? selectedItem.label : placeholder}
+          </CustomText>
           <MaterialCommunityIcons
             name="chevron-down"
             size={20}
@@ -35,7 +37,15 @@ const CustomPicker = ({ icon, items, placeholder}) => {
           <FlatList
             data={items}
             keyExtractor={(item) => item.value.toString()}
-            renderItem={({item}) => <PickerItem label={item.label} onPress={() => console.log(item)}/>}
+            renderItem={({ item }) => (
+              <PickerItem
+                label={item.label}
+                onPress={() => {
+                  setModalVisible(false);
+                  onSelectItem(item);
+                }}
+              />
+            )}
           />
         </Screen>
       </Modal>
