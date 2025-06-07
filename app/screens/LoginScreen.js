@@ -1,11 +1,10 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Image } from "react-native";
 import Screen from "../components/Screen";
-import CustomTextInput from "../components/CustomTextInput";
 import CustomButton from "../components/CustomButton";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import CustomText from "../components/CustomText";
-import ErrorMessage from "../components/ErrorMessage";
+
+import CustomFormField from "../components/CustomFormField";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -21,30 +20,26 @@ const LoginScreen = () => {
         onSubmit={(values) => console.log("Form values:", values)}
         validationSchema={validationSchema}
       >
-        {({ handleChange, handleSubmit, errors, setFieldTouched, touched }) => (
+        {({ handleSubmit }) => (
           <>
-            <CustomTextInput
+            <CustomFormField
+              name="email"
               icon="email"
               placeholder="Email"
-              onChangeText={handleChange("email")}
-              onBlur={() => setFieldTouched("email")}
               autoCapitalize="none"
               autoCorrect={false}
               keyboardType="email-address"
               textContentType="emailAddress"
             />
-            <ErrorMessage error={errors.email} visible={touched.email}/>
-            <CustomTextInput
+            <CustomFormField
+              name="password"
               icon="lock"
               placeholder="Password"
-              onChangeText={handleChange("password")}
-              onBlur={() => setFieldTouched("password")}
               autoCapitalize="none"
               autoCorrect={false}
               secureTextEntry={true}
               textContentType="password"
             />
-            <ErrorMessage error={errors.password} visible={touched.password}/>
             <CustomButton title="login" onPress={handleSubmit} />
           </>
         )}
