@@ -5,6 +5,7 @@ import CustomButton from "../components/CustomButton";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import CustomText from "../components/CustomText";
+import ErrorMessage from "../components/ErrorMessage";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -20,28 +21,30 @@ const LoginScreen = () => {
         onSubmit={(values) => console.log("Form values:", values)}
         validationSchema={validationSchema}
       >
-        {({ handleChange, handleSubmit, errors }) => (
+        {({ handleChange, handleSubmit, errors, setFieldTouched, touched }) => (
           <>
             <CustomTextInput
               icon="email"
               placeholder="Email"
+              onChangeText={handleChange("email")}
+              onBlur={() => setFieldTouched("email")}
               autoCapitalize="none"
               autoCorrect={false}
               keyboardType="email-address"
-              onChangeText={handleChange("email")}
               textContentType="emailAddress"
             />
-            <CustomText style={{ color: "red" }}>{errors.email}</CustomText>
+            <ErrorMessage error={errors.email} visible={touched.email}/>
             <CustomTextInput
               icon="lock"
-              onChangeText={handleChange("password")}
               placeholder="Password"
+              onChangeText={handleChange("password")}
+              onBlur={() => setFieldTouched("password")}
               autoCapitalize="none"
               autoCorrect={false}
               secureTextEntry={true}
               textContentType="password"
             />
-               <CustomText style={{ color: "red" }}>{errors.password}</CustomText>
+            <ErrorMessage error={errors.password} visible={touched.password}/>
             <CustomButton title="login" onPress={handleSubmit} />
           </>
         )}
