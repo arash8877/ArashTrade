@@ -12,14 +12,23 @@ import ListItem from "./app/components/ListItem";
 import AccountScreen from "./app/screens/AccountScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
 import CustomTextInput from "./app/components/CustomTextInput";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CustomPicker from "./app/components/CustomPicker";
 import LoginScreen from "./app/screens/LoginScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
-
+import * as ImagePicker from "expo-image-picker";
 
 export default function App() {
-  return (
-    <ListingEditScreen/>
-  );
+  const requestPermission = async () => {
+    const result = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (!result.granted) {
+      alert("You need to enable permission to access the library.");
+    }
+  };
+
+  useEffect(() => {
+    requestPermission();
+  }, []);
+
+  return <Screen></Screen>;
 }
