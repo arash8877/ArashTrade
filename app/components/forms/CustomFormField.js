@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { useFormikContext } from "formik";
-import CustomTextInput from "./CustomTextInput";
+import CustomTextInput from "../CustomTextInput";
 import ErrorMessage from "./ErrorMessage";
 
 const CustomFormField = ({ name, ...otherProps }) => {

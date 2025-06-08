@@ -1,4 +1,4 @@
-import CustomButton from "./CustomButton";
+import CustomButton from "../CustomButton";
 import { useFormikContext } from "formik";
 
 const SubmitButton = ({ title }) => {

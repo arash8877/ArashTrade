@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import CustomText from "./CustomText";
+import CustomText from "../CustomText";
 
 const ErrorMessage = ({ error, visible }) => {
   if (!visible || !error) return null;
