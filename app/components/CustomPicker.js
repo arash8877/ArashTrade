@@ -5,15 +5,23 @@ import CustomText from "./CustomText";
 import { useState } from "react";
 import Screen from "./Screen";
 import PickerItem from "./PickerItem";
-import App from "../../App";
 
 //--------------------------- Main function ---------------------------
-const CustomPicker = ({ icon, items, onSelectItem, selectedItem, placeholder, width='100%' }) => {
+const CustomPicker = ({
+  icon,
+  items,
+  numberOfColumns = 1,
+  onSelectItem,
+  PickerItemComponent = PickerItem,
+  selectedItem,
+  placeholder,
+  width = "100%",
+}) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-        <View style={[styles.container, {width}]}>
+        <View style={[styles.container, { width }]}>
           {icon && (
             <MaterialCommunityIcons
               name={icon}
@@ -41,9 +49,11 @@ const CustomPicker = ({ icon, items, onSelectItem, selectedItem, placeholder, wi
           <Button title="Close" onPress={() => setModalVisible(false)} />
           <FlatList
             data={items}
+            numColumns={numberOfColumns}
             keyExtractor={(item) => item.value.toString()}
             renderItem={({ item }) => (
-              <PickerItem
+              <PickerItemComponent
+                item={item}
                 label={item.label}
                 onPress={() => {
                   setModalVisible(false);

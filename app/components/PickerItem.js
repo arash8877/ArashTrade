@@ -1,10 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import CustomText from "./CustomText";
 
-const PickerItem = ({ label, onPress }) => {
+const PickerItem = ({item, onPress }) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <CustomText style={styles.text}>{label}</CustomText>
+      <CustomText style={styles.text}>{item.label}</CustomText>
     </TouchableOpacity>
   );
 };
