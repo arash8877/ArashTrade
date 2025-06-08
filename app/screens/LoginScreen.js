@@ -1,7 +1,7 @@
 import { StyleSheet, Image } from "react-native";
 import Screen from "../components/Screen";
 import SubmitButton from "../components/SubmitButton";
-import { Formik } from "formik";
+import CustomForm from "../components/CustomForm";
 import * as Yup from "yup";
 
 import CustomFormField from "../components/CustomFormField";
@@ -15,35 +15,31 @@ const LoginScreen = () => {
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/logo-red.png")} />
-      <Formik
+      <CustomForm
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => console.log("Form values:", values)}
         validationSchema={validationSchema}
       >
-        {() => (
-          <>
-            <CustomFormField
-              name="email"
-              icon="email"
-              placeholder="Email"
-              autoCapitalize="none"
-              autoCorrect={false}
-              keyboardType="email-address"
-              textContentType="emailAddress"
-            />
-            <CustomFormField
-              name="password"
-              icon="lock"
-              placeholder="Password"
-              autoCapitalize="none"
-              autoCorrect={false}
-              secureTextEntry={true}
-              textContentType="password"
-            />
-            <SubmitButton title="Login" />
-          </>
-        )}
-      </Formik>
+        <CustomFormField
+          name="email"
+          icon="email"
+          placeholder="Email"
+          autoCapitalize="none"
+          autoCorrect={false}
+          keyboardType="email-address"
+          textContentType="emailAddress"
+        />
+        <CustomFormField
+          name="password"
+          icon="lock"
+          placeholder="Password"
+          autoCapitalize="none"
+          autoCorrect={false}
+          secureTextEntry={true}
+          textContentType="password"
+        />
+        <SubmitButton title="Login" />
+      </CustomForm>
     </Screen>
   );
 };
