@@ -5,6 +5,7 @@ import CustomText from "./CustomText";
 import { useState } from "react";
 import Screen from "./Screen";
 import PickerItem from "./PickerItem";
+import App from "../../App";
 
 //--------------------------- Main function ---------------------------
 const CustomPicker = ({ icon, items, onSelectItem, selectedItem, placeholder }) => {
@@ -22,7 +23,11 @@ const CustomPicker = ({ icon, items, onSelectItem, selectedItem, placeholder }) 
             />
           )}
           <CustomText style={styles.text}>
-            {selectedItem ? selectedItem.label : placeholder}
+            {selectedItem ? (
+              <CustomText style={styles.text}>{selectedItem.label}</CustomText>
+            ) : (
+              <CustomText style={styles.placeholder}>{placeholder}</CustomText>
+            )}
           </CustomText>
           <MaterialCommunityIcons
             name="chevron-down"
@@ -68,6 +73,10 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   text: {
+    flex: 1,
+  },
+  placeholder: {
+    color: defaultStyles.colors.medium,
     flex: 1,
   },
 });
