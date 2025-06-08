@@ -30,8 +30,9 @@ export default function ListingEditScreen() {
           maxLength={8} //10000.99
           name="price"
           placeholder="Price"
+          width={120}
         />
-        <CustomFormPicker items={categories} name="category" placeholder="Category" />
+        <CustomFormPicker items={categories} name="category" placeholder="Category" width='50%'/>
         <CustomFormField
           maxLength={255}
           name="description"
