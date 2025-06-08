@@ -1,6 +1,6 @@
 import { StyleSheet, Image } from "react-native";
 import Screen from "../components/Screen";
-import CustomButton from "../components/CustomButton";
+import SubmitButton from "../components/SubmitButton";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -20,7 +20,7 @@ const LoginScreen = () => {
         onSubmit={(values) => console.log("Form values:", values)}
         validationSchema={validationSchema}
       >
-        {({ handleSubmit }) => (
+        {() => (
           <>
             <CustomFormField
               name="email"
@@ -40,7 +40,7 @@ const LoginScreen = () => {
               secureTextEntry={true}
               textContentType="password"
             />
-            <CustomButton title="login" onPress={handleSubmit} />
+            <SubmitButton title="Login" />
           </>
         )}
       </Formik>
