@@ -1,4 +1,4 @@
-import { Switch, TextInput, View } from "react-native";
+import { Button, Switch, TextInput, View, Image } from "react-native";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -19,6 +19,8 @@ import ListingEditScreen from "./app/screens/ListingEditScreen";
 import * as ImagePicker from "expo-image-picker";
 
 export default function App() {
+  const [imageUri, setImageUri] = useState("");
+
   const requestPermission = async () => {
     const result = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!result.granted) {
@@ -30,5 +32,22 @@ export default function App() {
     requestPermission();
   }, []);
 
-  return <Screen></Screen>;
+  const selectImage = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync();
+
+      if (!result.canceled) {
+        setImageUri(result.assets[0].uri);
+      }
+    } catch (error) {
+      console.log("Error reading an image:", error);
+    }
+  };
+
+  return (
+    <Screen>
+      <Button title="Select Image" onPress={selectImage} />
+      <Image source={{uri: imageUri}} style={{ width: 200, height: 200 }} />
+    </Screen>
+  );
 }
