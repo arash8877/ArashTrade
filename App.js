@@ -20,64 +20,18 @@ import * as ImagePicker from "expo-image-picker";
 import ImageInput from "./app/components/ImageInput";
 import ImageInputList from "./app/components/ImageInputList";
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import AuthNavigator from "./app/navigation/AuthNavigator";
 
-const Tweets = ({ navigation }) => (
-  <Screen>
-    <Text>Tweets</Text>
-    <Button title="View Details" onPress={() => navigation.navigate("TweetDetails", { id: 1 })} />
-  </Screen>
-);
 
-const TweetDetails = ({ route }) => (
-  <Screen>
-    <Text>Tweet Details - {route.params.id}</Text>
-  </Screen>
-);
 
-const Account = () => (
-  <Screen>
-    <Text>Account</Text>
-  </Screen>
-);
-
-const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={{
-          tabBarActiveBackgroundColor: "indigo",
-          tabBarActiveTintColor: "white",
-          tabBarInactiveBackgroundColor: "#eee",
-          tabBarInactiveTintColor: "black",
-        }}
-      >
-        <Tab.Screen name="Feed" component={Tweets} options={{tabBarIcon: ({size, color})=> <MaterialCommunityIcons name="home" size={size} color={color}/>}}/>
-        <Tab.Screen name="account" component={Account} />
-      </Tab.Navigator>
+      <AuthNavigator />
     </NavigationContainer>
   );
 }
-
-// <NavigationContainer>
-//   <Stack.Navigator
-//     initialRouteName="Tweets"
-//     screenOptions={{
-//       headerStyle: { backgroundColor: "indigo" },
-//       headerTintColor: "white",
-//       headerTitleStyle: { fontWeight: "bold" },
-//     }}
-//   >
-//     <Stack.Screen name="Tweets" component={Tweets} />
-//     <Stack.Screen
-//       name="TweetDetails"
-//       component={TweetDetails}
-//       options={({ route }) => ({ title: route.params.id })}
-//     />
-//   </Stack.Navigator>
-// </NavigationContainer>

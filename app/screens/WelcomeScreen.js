@@ -3,7 +3,7 @@ import CustomText from "../components/CustomText";
 import colors from "../config/colors";
 import CustomButton from "../components/CustomButton";
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({navigation}) => {
   return (
     <ImageBackground
       style={styles.background}
@@ -17,8 +17,8 @@ const WelcomeScreen = () => {
       </View>
 
       <View style={styles.buttonsContainer}>
-        <CustomButton title="login" />
-        <CustomButton title="register" color="secondary" />
+        <CustomButton title="login" onPress={()=> navigation.navigate('Login')}/>
+        <CustomButton title="register" color="secondary" onPress={()=> navigation.navigate('Register')} />
       </View>
     </ImageBackground>
   );
