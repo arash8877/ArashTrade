@@ -5,7 +5,7 @@ import { useRef } from "react";
 const ImageInputList = ({ imageUris = [], onRemoveImage, onAddImage }) => {
   const scrollView = useRef();
   return (
-    <View> // Added View as ScrollView as ScrollView fill the entire screen.
+    <View>
       <ScrollView
         ref={scrollView}
         horizontal
