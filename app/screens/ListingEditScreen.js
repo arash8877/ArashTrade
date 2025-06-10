@@ -1,5 +1,7 @@
-import { BackHandler, StyleSheet } from "react-native";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
+import * as Location from "expo-location";
+import { StyleSheet } from "react-native";
 import Screen from "../components/Screen";
 import { CustomForm, CustomFormField, SubmitButton, CustomFormPicker } from "../components/forms";
 import CategoryPickerItem from "../components/CategoryPickerItem";
@@ -26,18 +28,31 @@ const categories = [
 ];
 
 export default function ListingEditScreen() {
+  const [location, setLocation] = useState();
+
+  const getLocation = async () => {
+    const result = await Location.requestForegroundPermissionsAsync();
+    if (!result.granted) return;
+    const {coords: {latitude, longitude}} = await Location.getLastKnownPositionAsync();
+    setLocation({ latitude, longitude });
+  };
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
   return (
     <Screen style={styles.container}>
       <CustomForm
-        initialValues={{ title: "", price: "", description: "", category: null, images: [] }}
-        onSubmit={(values) => console.log("Form values:", values)}
-        validationSchema={validationSchema}
+        initialValues={{ title: "", price: 0, description: "", category: null, images: [] }}
+        onSubmit={(values) => console.log("location:", location, )}
+        // validationSchema={validationSchema}
       >
         <FormImagePicker name="images" />
-        <CustomFormField maxLength={225} name="title" placeholder="Title" />
+        <CustomFormField  name="title" maxLength={225} placeholder="Title" />
         <CustomFormField
           keyboardType="numeric"
-          maxLength={8} //10000.99
+          maxLength={8} 
           name="price"
           placeholder="Price"
           width={120}
