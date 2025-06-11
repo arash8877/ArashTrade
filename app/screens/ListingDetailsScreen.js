@@ -1,15 +1,17 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
 import CustomText from "../components/CustomText";
 import colors from "../config/colors";
 import ListItem from "../components/ListItem";
 
-export default function ListingDetailsScreen() {
+export default function ListingDetailsScreen({ route }) {
+  const listing = route.params;
+
   return (
     <View>
-      <Image style={styles.image} source={require("../assets/jacket.jpg")} />
+      <Image style={styles.image} source={listing.image} />
       <View style={styles.detailsContainer}>
-        <CustomText style={styles.title}>Red jacket for sale</CustomText>
-        <CustomText style={styles.price}>DKK 100</CustomText>
+        <CustomText style={styles.title}>{listing.title}</CustomText>
+        <CustomText style={styles.price}>DKK {listing.price}</CustomText>
       </View>
       <View style={styles.userContainer}>
         <ListItem
