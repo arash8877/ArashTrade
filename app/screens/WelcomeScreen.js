@@ -1,7 +1,7 @@
 import { StyleSheet, View, TouchableOpacity, ImageBackground, Image, Text } from "react-native";
-import CustomText from "../components/CustomText";
 import colors from "../config/colors";
 import CustomButton from "../components/CustomButton";
+import routes from "../navigation/routes";
 
 const WelcomeScreen = ({navigation}) => {
   return (
@@ -17,8 +17,8 @@ const WelcomeScreen = ({navigation}) => {
       </View>
 
       <View style={styles.buttonsContainer}>
-        <CustomButton title="login" onPress={()=> navigation.navigate('Login')}/>
-        <CustomButton title="register" color="secondary" onPress={()=> navigation.navigate('Register')} />
+        <CustomButton title="login" onPress={()=> navigation.navigate(routes.LOGIN)}/>
+        <CustomButton title="register" color="secondary" onPress={()=> navigation.navigate(routes.REGISTER)} />
       </View>
     </ImageBackground>
   );
