@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, ActivityIndicator } from "react-native";
+// import LoaderActivityIndicator from "../components/LoaderActivityIndicator";
+import BasketActivityIndicator from "../components/BasketActivityIndicator";
 import Screen from "../components/Screen";
 import Card from "../components/Card";
 import colors from "../config/colors";
@@ -26,13 +28,17 @@ import CustomText from "../components/CustomText";
 const ListingsScreen = ({ navigation }) => {
   const [listings, setListings] = useState([]);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     loadListings();
   }, []);
 
   const loadListings = async () => {
+    setLoading(true);
     const response = await listingsApi.getListings();
+    setLoading(false);
+
     if (!response.ok) {
       return setError(true);
     } else {
@@ -44,14 +50,13 @@ const ListingsScreen = ({ navigation }) => {
 
   return (
     <Screen style={styles.screen}>
-      {
-        error && (
-          <>
+      {error && (
+        <>
           <CustomText>Couldn't retrieve the listings</CustomText>
-          <CustomButton title='Retry' onPress={loadListings}/>
-          </>
-        )
-      }
+          <CustomButton title="Retry" onPress={loadListings} />
+        </>
+      )}
+      <BasketActivityIndicator visible={loading} />
       <FlatList
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}
