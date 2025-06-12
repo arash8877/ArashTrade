@@ -1,10 +1,12 @@
+import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import Screen from "../components/Screen";
 import Card from "../components/Card";
 import colors from "../config/colors";
 import routes from "../navigation/routes";
 import listingsApi from "../api/listings";
-import { useEffect, useState } from "react";
+import CustomButton from "../components/CustomButton";
+import CustomText from "../components/CustomText";
 
 // const listings = [
 //   {
@@ -23,6 +25,7 @@ import { useEffect, useState } from "react";
 
 const ListingsScreen = ({ navigation }) => {
   const [listings, setListings] = useState([]);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     loadListings();
@@ -30,15 +33,25 @@ const ListingsScreen = ({ navigation }) => {
 
   const loadListings = async () => {
     const response = await listingsApi.getListings();
-    console.log('Response:', JSON.stringify(response.data, null, 2));
+    if (!response.ok) {
+      return setError(true);
+    } else {
+      setError(false);
+    }
+
     setListings(response.data);
   };
 
-
-
-
   return (
     <Screen style={styles.screen}>
+      {
+        error && (
+          <>
+          <CustomText>Couldn't retrieve the listings</CustomText>
+          <CustomButton title='Retry' onPress={loadListings}/>
+          </>
+        )
+      }
       <FlatList
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}
