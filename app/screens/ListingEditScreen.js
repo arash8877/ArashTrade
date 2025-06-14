@@ -31,11 +31,13 @@ export default function ListingEditScreen() {
   const location = useLocation();
 
   const handleSubmit = async (listing) => {
-    const result = await listingsApi.addListing({ ...listing, location });
+    const result = await listingsApi.addListing({ ...listing, location }, (progress) =>
+      console.log(progress)
+    );
     if (!result.ok) {
-      console.log("Status:", result.status); // e.g. 400, 500
-      console.log("Problem:", result.problem); // 'CLIENT_ERROR', 'SERVER_ERROR', …
-      console.log("Payload:", result.data); // backend message
+      console.log("Status:", result.status);
+      console.log("Problem:", result.problem);
+      console.log("Payload:", result.data);
       alert("Could not save the listing ‑ check the log for details.");
       return;
     }

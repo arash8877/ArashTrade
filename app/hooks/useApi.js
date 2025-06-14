@@ -8,7 +8,6 @@ export default useApi = (apiFunc) => {
   const request = async (...args) => {
     setLoading(true);
     const response = await apiFunc(...args);
-    console.log("⇩ API raw response", response);   // 👀
     setLoading(false);
 
     if (!response.ok) {
