@@ -29,7 +29,7 @@ const ListingsScreen = ({ navigation }) => {
   const getListingsApi = useApi(listingsApi.getListings);
 
   useEffect(() => {
-    getListingsApi.request(1, 2, 3);
+    getListingsApi.request(1,2,3);
   }, []);
 
   return (
@@ -37,7 +37,7 @@ const ListingsScreen = ({ navigation }) => {
       {getListingsApi.error && (
         <>
           <CustomText>Couldn't retrieve the listings</CustomText>
-          <CustomButton title="Retry" onPress={loadListings} />
+          <CustomButton title="Retry" onPress={getListingsApi.request(1, 2, 3)} />
         </>
       )}
       <LoaderActivityIndicator visible={getListingsApi.loading} />

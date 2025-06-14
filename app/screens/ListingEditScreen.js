@@ -1,4 +1,3 @@
-
 import * as Yup from "yup";
 import { StyleSheet } from "react-native";
 import Screen from "../components/Screen";
@@ -6,6 +5,7 @@ import { CustomForm, CustomFormField, SubmitButton, CustomFormPicker } from "../
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import FormImagePicker from "../components/forms/FormImagePicker";
 import useLocation from "../hooks/useLocation";
+import listingsApi from "../api/listings";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -30,18 +30,31 @@ const categories = [
 export default function ListingEditScreen() {
   const location = useLocation();
 
+  const handleSubmit = async (listing) => {
+    const result = await listingsApi.addListing({ ...listing, location });
+    if (!result.ok) {
+      console.log("Status:", result.status); // e.g. 400, 500
+      console.log("Problem:", result.problem); // 'CLIENT_ERROR', 'SERVER_ERROR', …
+      console.log("Payload:", result.data); // backend message
+      alert("Could not save the listing ‑ check the log for details.");
+      return;
+    }
+
+    alert("The listing is saved successfully");
+  };
+
   return (
     <Screen style={styles.container}>
       <CustomForm
         initialValues={{ title: "", price: 0, description: "", category: null, images: [] }}
-        onSubmit={(values) => console.log("location:", location, )}
-        // validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+        validationSchema={validationSchema}
       >
         <FormImagePicker name="images" />
-        <CustomFormField  name="title" maxLength={225} placeholder="Title" />
+        <CustomFormField name="title" maxLength={225} placeholder="Title" />
         <CustomFormField
           keyboardType="numeric"
-          maxLength={8} 
+          maxLength={8}
           name="price"
           placeholder="Price"
           width={120}
