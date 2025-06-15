@@ -6,6 +6,8 @@ import CategoryPickerItem from "../components/CategoryPickerItem";
 import FormImagePicker from "../components/forms/FormImagePicker";
 import useLocation from "../hooks/useLocation";
 import listingsApi from "../api/listings";
+import { useState } from "react";
+import UploadScreen from "./UploadScreen";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -27,26 +29,30 @@ const categories = [
   { label: "Electronics", value: 9, backgroundColor: "#778ca3", icon: "cellphone" },
 ];
 
+//-------------------------- Main Function --------------------------
 export default function ListingEditScreen() {
+  const [uploadVisible, setUploadVisible] = useState(false);
+  const [progress, setProgress] = useState(0);
   const location = useLocation();
 
-  const handleSubmit = async (listing) => {
-    const result = await listingsApi.addListing({ ...listing, location }, (progress) =>
-      console.log(progress)
-    );
-    if (!result.ok) {
-      console.log("Status:", result.status);
-      console.log("Problem:", result.problem);
-      console.log("Payload:", result.data);
-      alert("Could not save the listing ‑ check the log for details.");
-      return;
-    }
+  console.log("progress:", progress);
 
+  const handleSubmit = async (listing) => {
+    setProgress(0);
+    setUploadVisible(true);
+    const result = await listingsApi.addListing({ ...listing, location }, (progress) =>
+      setProgress(progress)
+    );
+    setUploadVisible(false);
+
+    if (!result.ok) return alert("Could not save the listing");
     alert("The listing is saved successfully");
   };
 
+  //-------------------------- Render Function --------------------------
   return (
     <Screen style={styles.container}>
+      <UploadScreen progress={progress} visible={uploadVisible} />
       <CustomForm
         initialValues={{ title: "", price: 0, description: "", category: null, images: [] }}
         onSubmit={handleSubmit}

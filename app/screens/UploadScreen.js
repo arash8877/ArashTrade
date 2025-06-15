@@ -1,16 +1,20 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import CustomText from "../components/CustomText";
+import { StyleSheet, Modal, View } from "react-native";
+import * as Progress from "react-native-progress";
+import colors from "../config/colors";
 
-export default UploadScreen = ({ progress = 0, visible = false }) => {
+
+const UploadScreen = ({ progress = 0, visible = false }) => {
   return (
     <Modal visible={visible}>
       <View style={styles.container}>
-        <CustomText>{progress * 100}%</CustomText>
+        <Progress.Bar progress={progress} color={colors.primary} width={200}/>
       </View>
     </Modal>
   );
 };
+
+export default UploadScreen;
 
 const styles = StyleSheet.create({
   container: {
