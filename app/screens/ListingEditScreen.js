@@ -37,7 +37,7 @@ export default function ListingEditScreen() {
 
 
 
-  const handleSubmit = async (listing) => {
+  const handleSubmit = async (listing, {resetForm}) => {
     setProgress(0);
     setUploadVisible(true);
     const result = await listingsApi.addListing({ ...listing, location }, (progress) =>
@@ -48,6 +48,7 @@ export default function ListingEditScreen() {
       setUploadVisible(false);
       return alert("Could not save the listing");
     }
+    resetForm();
   };
 
   //-------------------------- Render Function --------------------------
