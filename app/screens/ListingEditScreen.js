@@ -35,7 +35,7 @@ export default function ListingEditScreen() {
   const [progress, setProgress] = useState(0);
   const location = useLocation();
 
-  console.log("progress:", progress);
+
 
   const handleSubmit = async (listing) => {
     setProgress(0);
@@ -43,16 +43,21 @@ export default function ListingEditScreen() {
     const result = await listingsApi.addListing({ ...listing, location }, (progress) =>
       setProgress(progress)
     );
-    setUploadVisible(false);
 
-    if (!result.ok) return alert("Could not save the listing");
-    alert("The listing is saved successfully");
+    if (!result.ok) {
+      setUploadVisible(false);
+      return alert("Could not save the listing");
+    }
   };
 
   //-------------------------- Render Function --------------------------
   return (
     <Screen style={styles.container}>
-      <UploadScreen progress={progress} visible={uploadVisible} />
+      <UploadScreen
+        onDone={() => setUploadVisible(false)}
+        progress={progress}
+        visible={uploadVisible}
+      />
       <CustomForm
         initialValues={{ title: "", price: 0, description: "", category: null, images: [] }}
         onSubmit={handleSubmit}
