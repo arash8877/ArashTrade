@@ -1,9 +1,10 @@
 // cache-layer
 
-import { AsyncStorage } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import moment from "moment";
 
 const prefix = "cache_";
-const expireTime = 1000 * 60 * 60; // 1 hour in milliseconds
+const expiryInMinutes = 5;
 
 //--------------- store data ----------------
 const store = async (key, value) => {
@@ -21,8 +22,9 @@ const store = async (key, value) => {
 
 //--------------- get data ----------------
 const isExpired = (item) => {
-  const now = Date.now();
-  return now - item.timestamp > expireTime;
+  const now = moment(Date.now());
+  const storedItem = moment(item.timestamp);
+  return now.diff(storedItem, "minutes") > expiryInMinutes;
 };
 
 const get = async (key) => {
