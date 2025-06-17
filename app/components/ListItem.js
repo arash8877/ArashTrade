@@ -15,25 +15,25 @@ export default function ListItem({
 }) {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <Swipeable renderRightActions={renderRightActions}>
-        <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
-          <View style={styles.container}>
-            {iconComponent}
-            {image && <Image source={image} style={styles.image} />}
-            <View style={styles.detailsContainer}>
-              <CustomText style={styles.title} numberOfLines={1}>
-                {title}
-              </CustomText>
-              {subTitle && (
-                <CustomText style={styles.subTitle} numberOfLines={2}>
-                  {subTitle}
+        <Swipeable renderRightActions={renderRightActions}>
+          <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
+            <View style={styles.container}>
+              {iconComponent}
+              {image && <Image source={image} style={styles.image} />}
+              <View style={styles.detailsContainer}>
+                <CustomText style={styles.title} numberOfLines={1}>
+                  {title}
                 </CustomText>
-              )}
+                {subTitle && (
+                  <CustomText style={styles.subTitle} numberOfLines={2}>
+                    {subTitle}
+                  </CustomText>
+                )}
+              </View>
+              <MaterialCommunityIcons name="chevron-right" size={25} color={colors.medium} />
             </View>
-            <MaterialCommunityIcons name="chevron-right" size={25} color={colors.medium} />
-          </View>
-        </TouchableHighlight>
-      </Swipeable>
+          </TouchableHighlight>
+        </Swipeable>
     </GestureHandlerRootView>
   );
 }

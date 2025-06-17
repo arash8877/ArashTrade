@@ -1,4 +1,5 @@
-import { View, Image, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import { Image } from "react-native-expo-image-cache";
 import CustomText from "../components/CustomText";
 import colors from "../config/colors";
 import ListItem from "../components/ListItem";
@@ -8,7 +9,12 @@ export default function ListingDetailsScreen({ route }) {
 
   return (
     <View>
-      <Image style={styles.image} source={listing.image} />
+      <Image
+        uri={listing.images[0].url}
+        preview={{ uri: listing.images[0].thumbnailUrl }}
+        tint="light"
+        style={styles.image}
+      />
       <View style={styles.detailsContainer}>
         <CustomText style={styles.title}>{listing.title}</CustomText>
         <CustomText style={styles.price}>DKK {listing.price}</CustomText>
@@ -44,5 +50,6 @@ const styles = StyleSheet.create({
   },
   userContainer: {
     marginVertical: 40,
+    minHeight: 100,
   },
 });
