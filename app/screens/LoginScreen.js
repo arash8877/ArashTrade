@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { StyleSheet, Image } from "react-native";
 import Screen from "../components/Screen";
 import { CustomForm, CustomFormField, SubmitButton, ErrorMessage } from "../components/forms";
 import * as Yup from "yup";
 import authApi from "../api/auth";
-import { useState } from "react";
+import { useAuth } from "../auth/context";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -13,20 +14,13 @@ const validationSchema = Yup.object().shape({
 //------------------- Main Component -------------------
 const LoginScreen = () => {
   const [loginFailed, setLoginFailed] = useState(false);
+  const {login} = useAuth();
 
   const handleLogin = async ({ email, password }) => {
     try {
-      const response = await authApi.login(email, password);
-
-      if (response.status !== 200) {
-        setLoginFailed(true);
-        return;
-      } else {
-        setLoginFailed(false);
-        console.log("Login successful:", response.data);
-      }
-    } catch (err) {
-      console.error("Unexpected error during login", err);
+      await login(email, password);
+      setLoginFailed(false);
+    } catch (error) {
       setLoginFailed(true);
     }
   };

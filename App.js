@@ -12,7 +12,6 @@ import ListItem from "./app/components/ListItem";
 import AccountScreen from "./app/screens/AccountScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
 import CustomTextInput from "./app/components/CustomTextInput";
-import { useState, useEffect } from "react";
 import CustomPicker from "./app/components/CustomPicker";
 import LoginScreen from "./app/screens/LoginScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
@@ -22,22 +21,28 @@ import ImageInputList from "./app/components/ImageInputList";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
+import { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import navigationTheme from "./app/navigation/navigationTheme";
 import OfflineNotice from "./app/components/OfflineNotice";
 import AppNavigator from "./app/navigation/AppNavigator";
+import { AuthProvider, useAuth } from "./app/auth/context";
+
+
+
+const RootNavigator = () => {
+  const { user } = useAuth();
+  return user ? <AppNavigator /> : <AuthNavigator />;
+};
 
 export default function App() {
-
   return (
-    <>
-    <OfflineNotice />
+    <AuthProvider>
+      <OfflineNotice />
       <NavigationContainer theme={navigationTheme}>
-        {/* <AppNavigator /> */}
-        <AuthNavigator />
+        <RootNavigator />
       </NavigationContainer>
-    </>
+    </AuthProvider>
   );
 }
-
