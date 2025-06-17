@@ -27,9 +27,7 @@ import AuthNavigator from "./app/navigation/AuthNavigator";
 import navigationTheme from "./app/navigation/navigationTheme";
 import OfflineNotice from "./app/components/OfflineNotice";
 import AppNavigator from "./app/navigation/AppNavigator";
-import { AuthProvider, useAuth } from "./app/auth/context";
-
-
+import { AuthProvider, useAuth } from "./app/auth/authContext";
 
 const RootNavigator = () => {
   const { user } = useAuth();

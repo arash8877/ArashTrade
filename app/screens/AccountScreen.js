@@ -4,7 +4,7 @@ import ListItem from "../components/ListItem";
 import colors from "../config/colors";
 import Icon from "../components/Icon";
 import ListItemSeparator from "../components/ListItemSeparator";
-import { useAuth } from "../auth/context";
+import { useAuth } from "../auth/authContext";
 
 const menuItems = [
   {

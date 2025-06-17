@@ -4,7 +4,7 @@ import Screen from "../components/Screen";
 import { CustomForm, CustomFormField, SubmitButton, ErrorMessage } from "../components/forms";
 import * as Yup from "yup";
 import authApi from "../api/auth";
-import { useAuth } from "../auth/context";
+import { useAuth } from "../auth/authContext";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -14,7 +14,7 @@ const validationSchema = Yup.object().shape({
 //------------------- Main Component -------------------
 const LoginScreen = () => {
   const [loginFailed, setLoginFailed] = useState(false);
-  const {login} = useAuth();
+  const { login } = useAuth();
 
   const handleLogin = async ({ email, password }) => {
     try {
