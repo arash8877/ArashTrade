@@ -26,14 +26,24 @@ import { NavigationContainer } from "@react-navigation/native";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import navigationTheme from "./app/navigation/navigationTheme";
 import AppNavigator from "./app/navigation/AppNavigator";
+import NetInfo, { useNetInfo } from "@react-native-community/netinfo";
 
-
-
+// export default function App() {
+//   return (
+//     <NavigationContainer theme={navigationTheme}>
+//       <AppNavigator/>
+//     </NavigationContainer>
+//   );
+// }
 
 export default function App() {
+  const { isInternetReachable } = useNetInfo();
+  const offline = true;
+
   return (
-    <NavigationContainer theme={navigationTheme}>
-      <AppNavigator/>
-    </NavigationContainer>
+    <View>
+      <Button title="Submit" disabled={offline} />
+      {offline && <Text>🔌 No internet</Text>}
+    </View>
   );
 }
