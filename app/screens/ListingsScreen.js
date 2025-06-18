@@ -37,7 +37,7 @@ const ListingsScreen = ({ navigation }) => {
       {getListingsApi.error && (
         <>
           <CustomText>Couldn't retrieve the listings</CustomText>
-          <CustomButton title="Retry" onPress={getListingsApi.request(1, 2, 3)} />
+          <CustomButton title="Retry" onPress={()=> getListingsApi.request(1, 2, 3)} />
         </>
       )}
       <LoaderActivityIndicator visible={getListingsApi.loading} />
