@@ -48,9 +48,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   //--- memoize so re‑renders only happen when user object changes ---
-  const value = useMemo(() => ({ user, login, logout }), [user]);
+  const value = useMemo(() => ({ user, login, logout, ready }), [user, ready]);
 
-  if (!ready) return null;
+  if (!ready) return <></>; // Block rendering until splash is hidden
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
