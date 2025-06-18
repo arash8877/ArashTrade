@@ -5,6 +5,7 @@ export default Object.freeze({
     LISTING_EDIT: "ListingEdit",
     MESSAGES: "Messages",
     ACCOUNT: "Account",
+    ACCOUNT_TAB: "AccountTab",
     LISTINGS: "Listings",
     VIEW_IMAGE: "ViewImage",
     WELCOME: "Welcome",
