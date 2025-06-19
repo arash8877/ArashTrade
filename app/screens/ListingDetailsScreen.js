@@ -1,14 +1,18 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, KeyboardAvoidingView, Platform } from "react-native";
 import { Image } from "react-native-expo-image-cache";
 import CustomText from "../components/CustomText";
 import colors from "../config/colors";
 import ListItem from "../components/ListItem";
+import ContactSellerForm from "../components/ContactSellerForm";
 
 export default function ListingDetailsScreen({ route }) {
   const listing = route.params;
 
   return (
-    <View>
+    <KeyboardAvoidingView
+      behavior="position"
+      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
+    >
       <Image
         uri={listing.images[0].url}
         preview={{ uri: listing.images[0].thumbnailUrl }}
@@ -18,15 +22,17 @@ export default function ListingDetailsScreen({ route }) {
       <View style={styles.detailsContainer}>
         <CustomText style={styles.title}>{listing.title}</CustomText>
         <CustomText style={styles.price}>DKK {listing.price}</CustomText>
+
+        <View style={styles.userContainer}>
+          <ListItem
+            title="Arash Abdollahi"
+            subTitle="5 Items"
+            image={require("../assets/mosh.jpg")}
+          />
+        </View>
+        <ContactSellerForm listing={listing} />
       </View>
-      <View style={styles.userContainer}>
-        <ListItem
-          title="Arash Abdollahi"
-          subTitle="5 Items"
-          image={require("../assets/mosh.jpg")}
-        />
-      </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
