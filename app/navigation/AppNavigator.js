@@ -7,15 +7,16 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import NewListingButton from "./NewListingButton";
 import routes from "./routes";
 import * as Notifications from "expo-notifications";
+import expoPushTokens from "../api/expoPushTokens";
 
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
   useEffect(() => {
-    requestForPushNotification();
+    getPushNotificationToken();
   }, []);
 
-  const requestForPushNotification = async () => {
+  const getPushNotificationToken = async () => {
     try {
       const { status } = await Notifications.getPermissionsAsync();
       if (status !== "granted") {
@@ -23,7 +24,7 @@ const AppNavigator = () => {
         if (newStatus !== "granted") return; // user said “nope”
       }
       const token = (await Notifications.getExpoPushTokenAsync()).data;
-      console.log(first("Expo Push Token:", token));
+      expoPushTokens.registerPushToken(token); // add the pushToken to the user-object in backend  
     } catch (error) {
       console.log(first("Error getting push token:", error));
     }
