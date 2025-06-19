@@ -8,12 +8,19 @@ import NewListingButton from "./NewListingButton";
 import routes from "./routes";
 import * as Notifications from "expo-notifications";
 import expoPushTokens from "../api/expoPushTokens";
+import navigation from "./rootNavigation";
 
 const Tab = createBottomTabNavigator();
 
+// navigation prop is only available to 'screen' components.  Tab.screen
+// AppNavigator is not an screen component, so we cannot use the navigation prop here like: AppNavigator=({navigation})=> {}
+// Instead we use the navigation object from rootNavigation.js also add ref to NavigationContainer in App.js
 const AppNavigator = () => {
   useEffect(() => {
     getPushNotificationToken();
+    Notifications.addNotificationReceivedListener((notification) => {
+      navigation.navigate('Account')
+    });
   }, []);
 
   const getPushNotificationToken = async () => {
@@ -24,7 +31,7 @@ const AppNavigator = () => {
         if (newStatus !== "granted") return; // user said “nope”
       }
       const token = (await Notifications.getExpoPushTokenAsync()).data;
-      expoPushTokens.registerPushToken(token); // add the pushToken to the user-object in backend  
+      expoPushTokens.registerPushToken(token); // add the pushToken to the user-object in backend
     } catch (error) {
       console.log(first("Error getting push token:", error));
     }

@@ -6,7 +6,9 @@ import navigationTheme from "./app/navigation/navigationTheme";
 import OfflineNotice from "./app/components/OfflineNotice";
 import AppNavigator from "./app/navigation/AppNavigator";
 import { AuthProvider, useAuth } from "./app/auth/authContext";
+import { navigationRef } from "./app/navigation/rootNavigation";
 
+//------------------- using splash ------------------
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 // Set the animation options. This is optional.
@@ -30,11 +32,12 @@ const Main = () => {
       await SplashScreen.hideAsync();
     }
   }, [ready]);
-
   if (!ready) return <></>;
 
+
+
   return (
-    <NavigationContainer theme={navigationTheme} onReady={onReady}>
+    <NavigationContainer theme={navigationTheme} onReady={onReady} ref={navigationRef}>
       <OfflineNotice />
       <RootNavigator />
     </NavigationContainer>
