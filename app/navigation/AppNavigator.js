@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ListingEditScreen from "../screens/ListingEditScreen";
 import FeedNavigator from "./FeedNavigator";
@@ -6,10 +6,29 @@ import AccountNavigator from "./AccountNavigator";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import NewListingButton from "./NewListingButton";
 import routes from "./routes";
+import * as Notifications from "expo-notifications";
 
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
+  useEffect(() => {
+    requestForPushNotification();
+  }, []);
+
+  const requestForPushNotification = async () => {
+    try {
+      const { status } = await Notifications.getPermissionsAsync();
+      if (status !== "granted") {
+        const { status: newStatus } = await Notifications.requestPermissionsAsync();
+        if (newStatus !== "granted") return; // user said “nope”
+      }
+      const token = (await Notifications.getExpoPushTokenAsync()).data;
+      console.log(first("Expo Push Token:", token));
+    } catch (error) {
+      console.log(first("Error getting push token:", error));
+    }
+  };
+
   return (
     <Tab.Navigator>
       <Tab.Screen
@@ -25,8 +44,10 @@ const AppNavigator = () => {
       <Tab.Screen
         name="ListingEdit"
         component={ListingEditScreen}
-        options={({navigation}) => ({
-          tabBarButton: () => <NewListingButton onPress={() => navigation.navigate(routes.LISTING_EDIT)}/>,
+        options={({ navigation }) => ({
+          tabBarButton: () => (
+            <NewListingButton onPress={() => navigation.navigate(routes.LISTING_EDIT)} />
+          ),
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="plus-circle" color={color} size={size} />
           ),
