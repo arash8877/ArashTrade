@@ -28,7 +28,7 @@ const LoginScreen = () => {
   //------------------- Render Component -------------------
   return (
     <Screen style={styles.container}>
-      <Image style={styles.logo} source={require("../assets/logo-red.png")} />
+      <Image style={styles.logo} source={require("../assets/logo.png")} />
       <CustomForm
         initialValues={{ email: "", password: "" }}
         onSubmit={handleLogin}
@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   logo: {
-    width: 80,
-    height: 80,
+    width: 200,
+    height: 200,
     alignSelf: "center",
     marginTop: 50,
     marginBottom: 20,

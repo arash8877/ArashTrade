@@ -8,20 +8,20 @@ import ListItemDeleteAction from "../components/ListItemDeleteAction";
 const initialMessages = [
   {
     id: 1,
-    title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishi",
-    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishi",
+    title: "Er varen stadig til salg",
+    description: "Hej! Jeg er interesseret – er kameraet stadig tilgængeligt?",
     image: require("../assets/arash.png"),
   },
   {
     id: 2,
-    title: "T2",
-    description: "D2",
+    title: "Bytter du",
+    description: "Hej, vil du bytte mod noget andet elektronik?",
     image: require("../assets/arash.png"),
   },
   {
     id: 3,
-    title: "T3",
-    description: "D3",
+    title: "Kan du sende den",
+    description: "Er det muligt at få den sendt med posten?",
     image: require("../assets/arash.png"),
   },
 ];
