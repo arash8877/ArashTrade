@@ -1,9 +1,11 @@
 import { create } from "apisauce";
 import cache from "./utility/cache";
 import tokenStorage from "../auth/tokenStorage";
+import settings from "../config/settings";
 
 const apiClient = create({
-  baseURL: "http://192.168.50.50:9000/api",
+  // baseURL: "http://192.168.50.50:9000/api",
+  baseURL: settings.apiUrl,
 });
 
 // Add a request transform to include the auth token in headers

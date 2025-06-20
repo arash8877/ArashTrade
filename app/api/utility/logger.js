@@ -1,3 +1,4 @@
+//------------- This file is used to report errors -----------------------
 // import Bugsnag from "@bugsnag/expo";
 
 // const log = (error) => Bugsnag.notify(error);
