@@ -27,7 +27,18 @@
     },
     "plugins": [
       "expo-secure-store"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "369e148c-50de-40f9-8fdd-c7d134580094"
+      }
+    },
+    "owner": "kioosk",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/369e148c-50de-40f9-8fdd-c7d134580094"
+    }
   }
 }
- 
