@@ -27,7 +27,7 @@ export default function ListingDetailsScreen({ route }) {
           <ListItem
             title="Arash Abdollahi"
             subTitle="5 Items"
-            image={require("../assets/mosh.jpg")}
+            image={require("../assets/arash.png")}
           />
         </View>
         <ContactSellerForm listing={listing} />
