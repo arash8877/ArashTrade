@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, FlatList, View } from "react-native";
 import Screen from "../components/Screen";
 import ListItem from "../components/ListItem";
 import colors from "../config/colors";
@@ -13,7 +13,7 @@ const menuItems = [
       name: "format-list-bulleted",
       backgroundColor: colors.primary,
     },
-    targetScreen: "Messages",
+    // targetScreen: "Messages",
   },
   {
     title: "My Messages",
@@ -30,30 +30,31 @@ const AccountScreen = ({ navigation }) => {
 
   return (
     <Screen style={styles.screen}>
-      <ListItem title={user.name} subTitle={user.email} image={require("../assets/mosh.jpg")} />
       {/* <View style={styles.container}> */}
-      <FlatList
-        data={menuItems}
-        keyExtractor={(menuItem) => menuItem.title}
-        ItemSeparatorComponent={ListItemSeparator}
-        renderItem={({ item }) => (
-          <ListItem
-            title={item.title}
-            iconComponent={
-              <Icon name={item.icon.name} backgroundColor={item.icon.backgroundColor} />
-            }
-            onPress={() => navigation.navigate(item.targetScreen)}
-          />
-        )}
-      />
+        <ListItem title={user.name} subTitle={user.email} image={require("../assets/mosh.jpg")} />
       {/* </View> */}
-      {/* <View style={styles.container}> */}
+      <View style={styles.container}>
+        <FlatList
+          data={menuItems}
+          keyExtractor={(menuItem) => menuItem.title}
+          ItemSeparatorComponent={ListItemSeparator}
+          renderItem={({ item }) => (
+            <ListItem
+              title={item.title}
+              iconComponent={
+                <Icon name={item.icon.name} backgroundColor={item.icon.backgroundColor} />
+              }
+              onPress={() => navigation.navigate(item.targetScreen)}
+            />
+          )}
+        />
+      </View>
+
       <ListItem
         title="Log Out"
         iconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
         onPress={logout}
       />
-      {/* </View> */}
     </Screen>
   );
 };
@@ -66,5 +67,10 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: "yellow",
+    marginVertical: 20,
+  },
+  container1: {
+    backgroundColor: "yellow",
+    marginVertical: -210
   },
 });
