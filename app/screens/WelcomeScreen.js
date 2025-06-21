@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "600",
     color: colors.black,
-    paddingVertical: 0,
   },
   buttonsContainer: {
     width: "100%",

@@ -21,7 +21,8 @@ export default function ListingDetailsScreen({ route }) {
       />
       <View style={styles.detailsContainer}>
         <CustomText style={styles.title}>{listing.title}</CustomText>
-        <CustomText style={styles.price}>DKK {listing.price}</CustomText>
+        <CustomText style={styles.price}>{`DKK ${listing.price}`}</CustomText>
+        <CustomText style={styles.description}>{listing.description}</CustomText>
 
         <View style={styles.userContainer}>
           <ListItem
@@ -54,8 +55,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 20,
   },
+  description: {
+    marginTop: 10,
+    fontSize: 16,
+    color: colors.medium,
+  },
   userContainer: {
-    marginVertical: 40,
+    marginTop: 10,
     minHeight: 100,
   },
 });
