@@ -7,6 +7,7 @@ import OfflineNotice from "./app/components/OfflineNotice";
 import AppNavigator from "./app/navigation/AppNavigator";
 import { AuthProvider, useAuth } from "./app/auth/authContext";
 import { navigationRef } from "./app/navigation/rootNavigation";
+import Toast from "react-native-toast-message";
 
 //------------------- using splash ------------------
 // Keep the splash screen visible while we fetch resources
@@ -46,10 +47,10 @@ const Main = () => {
 
 //-------------------- App root --------------------
 export default function App() {
-  const [appIsReady, setAppIsReady] = useState(false);
   return (
     <AuthProvider>
       <Main />
+      <Toast position="top" topOffset={100} visibilityTime={3000} />
     </AuthProvider>
   );
 }

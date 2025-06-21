@@ -44,7 +44,7 @@ useNotifications();
         })}
       />
       <Tab.Screen
-        name="AccountTab"
+        name="Account"
         component={AccountNavigator}
         options={{
           headerShown: false,
