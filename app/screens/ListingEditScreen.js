@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import Screen from "../components/Screen";
 import { CustomForm, CustomFormField, SubmitButton, CustomFormPicker } from "../components/forms";
 import CategoryPickerItem from "../components/CategoryPickerItem";
@@ -35,9 +35,7 @@ export default function ListingEditScreen() {
   const [progress, setProgress] = useState(0);
   const location = useLocation();
 
-
-
-  const handleSubmit = async (listing, {resetForm}) => {
+  const handleSubmit = async (listing, { resetForm }) => {
     setProgress(0);
     setUploadVisible(true);
     const result = await listingsApi.addListing({ ...listing, location }, (progress) =>
@@ -59,19 +57,26 @@ export default function ListingEditScreen() {
         progress={progress}
         visible={uploadVisible}
       />
+      <Text style={styles.pageTitle}>Add Item for Sale</Text>
       <CustomForm
         initialValues={{ title: "", price: 0, description: "", category: null, images: [] }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
         <FormImagePicker name="images" />
-        <CustomFormField name="title" maxLength={225} placeholder="Title" />
+        <CustomFormField
+          name="title"
+          maxLength={225}
+          placeholder="Title"
+          icon="grease-pencil"
+        />
         <CustomFormField
           keyboardType="numeric"
           maxLength={8}
           name="price"
           placeholder="Price"
           width={120}
+          icon="cash-multiple"
         />
         <CustomFormPicker
           items={categories}
@@ -87,6 +92,7 @@ export default function ListingEditScreen() {
           numberOfLines={3}
           multiline
           placeholder="Description"
+          icon="text-box-outline"
         />
         <SubmitButton title="Post" />
       </CustomForm>
@@ -97,5 +103,11 @@ export default function ListingEditScreen() {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
+  },
+  pageTitle: {
+    fontSize: 24,
+    fontWeight: "600",
+    alignSelf: "center",
+    marginVertical: 15,
   },
 });
