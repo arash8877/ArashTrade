@@ -8,7 +8,6 @@ import NewListingButton from "./NewListingButton";
 import routes from "./routes";
 import useNotifications from "../hooks/useNotifications";
 
-
 const Tab = createBottomTabNavigator();
 
 // navigation prop is only available to 'screen' components.  Tab.screen
@@ -16,7 +15,7 @@ const Tab = createBottomTabNavigator();
 // Instead we use the navigation object from rootNavigation.js also add ref to NavigationContainer in App.js
 
 const AppNavigator = () => {
-useNotifications();
+  useNotifications();
 
   return (
     <Tab.Navigator>
