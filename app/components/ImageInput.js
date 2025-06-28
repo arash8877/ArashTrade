@@ -5,7 +5,6 @@ import * as ImagePicker from "expo-image-picker";
 import { useEffect } from "react";
 
 const ImageInput = ({ imageUri, onChangeImage }) => {
-  
   //---- Request permission to access the media library ----
   useEffect(() => {
     requestPermission();
