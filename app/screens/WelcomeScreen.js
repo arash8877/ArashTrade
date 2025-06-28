@@ -3,7 +3,7 @@ import colors from "../config/colors";
 import CustomButton from "../components/CustomButton";
 import routes from "../navigation/routes";
 
-const WelcomeScreen = ({navigation}) => {
+const WelcomeScreen = ({ navigation }) => {
   return (
     <ImageBackground
       style={styles.background}
@@ -17,8 +17,12 @@ const WelcomeScreen = ({navigation}) => {
       </View>
 
       <View style={styles.buttonsContainer}>
-        <CustomButton title="login" onPress={()=> navigation.navigate(routes.LOGIN)}/>
-        <CustomButton title="register" color="secondary" onPress={()=> navigation.navigate(routes.REGISTER)} />
+        <CustomButton title="login" onPress={() => navigation.navigate(routes.LOGIN)} />
+        <CustomButton
+          title="register"
+          color="secondary"
+          onPress={() => navigation.navigate(routes.REGISTER)}
+        />
       </View>
     </ImageBackground>
   );
