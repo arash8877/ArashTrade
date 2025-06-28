@@ -31,7 +31,7 @@ const AccountScreen = ({ navigation }) => {
   return (
     <Screen style={styles.screen}>
       {/* <View style={styles.container}> */}
-        <ListItem title={user.name} subTitle={user.email} image={require("../assets/arash.png")} />
+      <ListItem title={user.name} subTitle={user.email} image={require("../assets/arash.png")} />
       {/* </View> */}
       <View style={styles.container}>
         <FlatList
@@ -71,6 +71,6 @@ const styles = StyleSheet.create({
   },
   container1: {
     backgroundColor: "yellow",
-    marginVertical: -210
+    marginVertical: -210,
   },
 });

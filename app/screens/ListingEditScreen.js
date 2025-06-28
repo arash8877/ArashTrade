@@ -64,12 +64,7 @@ export default function ListingEditScreen() {
         validationSchema={validationSchema}
       >
         <FormImagePicker name="images" />
-        <CustomFormField
-          name="title"
-          maxLength={225}
-          placeholder="Title"
-          icon="grease-pencil"
-        />
+        <CustomFormField name="title" maxLength={225} placeholder="Title" icon="grease-pencil" />
         <CustomFormField
           keyboardType="numeric"
           maxLength={8}
