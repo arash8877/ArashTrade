@@ -9,7 +9,7 @@ const CustomFormField = ({ name, width, ...otherProps }) => {
   return (
     <>
       <CustomTextInput
-      value={values[name]} 
+        value={values[name]}
         onChangeText={handleChange(name)}
         onBlur={() => setFieldTouched(name)}
         width={width}

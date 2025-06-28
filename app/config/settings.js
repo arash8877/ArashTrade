@@ -31,9 +31,6 @@ const getCurrentSettings = () => {
 
 export default getCurrentSettings();
 
-
-
-
 // Then in the app/api/client file, I replaced
 // baseURL: "http://192.168.50.50:9000/api", to
 // baseURL: settings.apiUrl,
