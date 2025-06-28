@@ -8,5 +8,4 @@ const send = async (message, listingId) => {
   return result; // Make sure you return this!
 };
 
-
 export default { send };

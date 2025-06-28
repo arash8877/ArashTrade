@@ -35,7 +35,7 @@ const addListing = async (listing, onUploadProgress) => {
   if (listing.location) {
     data.append("location", JSON.stringify(listing.location));
   }
-  
+
   // return client.post(endpoint, data, {
   //   onUploadProgress: (progress) => onUploadProgress(progress.loaded / progress.total),
   // });
@@ -46,8 +46,6 @@ const addListing = async (listing, onUploadProgress) => {
     clearInterval(timer); // safety net in case request finishes early/late
     onUploadProgress(1); // slam the bar to 100 % when all is said and done
   }
-
-
 };
 
 export default {

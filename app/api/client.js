@@ -10,14 +10,14 @@ const apiClient = create({
 
 // Add a request transform to include the auth token in headers
 apiClient.addAsyncRequestTransform(async (request) => {
- const token = await tokenStorage.getToken();
+  const token = await tokenStorage.getToken();
   if (!token) return;
   request.headers["x-auth-token"] = token;
 });
 
 // Add a request interceptor to cache GET requests
 const get = apiClient.get;
-apiClient.get = async (url, params, axiosConfig) => { 
+apiClient.get = async (url, params, axiosConfig) => {
   const response = await get(url, params, axiosConfig);
 
   if (response.ok) {
@@ -25,10 +25,8 @@ apiClient.get = async (url, params, axiosConfig) => {
     return response;
   }
 
-const data = await cache.get(url);
+  const data = await cache.get(url);
   return data ? { ok: true, data } : response;
-
-  
 };
 
 export default apiClient;
