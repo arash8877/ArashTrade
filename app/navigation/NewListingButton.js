@@ -3,7 +3,7 @@ import React from "react";
 import colors from "../config/colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const NewListingButton = ({onPress}) => {
+const NewListingButton = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>
