@@ -21,8 +21,6 @@ function ContactSellerForm({ listing }) {
     try {
       const result = await messageApi.send(message, listing.id);
 
-
-
       if (!result || !result.ok) {
         console.log(
           "API problem →",

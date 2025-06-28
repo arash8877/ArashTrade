@@ -5,8 +5,8 @@ import CustomText from "./CustomText";
 
 const CategoryPickerItem = ({ item, onPress }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container} >
-      <Icon backgroundColor={item.backgroundColor} name={item.icon} size={80}/>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
+      <Icon backgroundColor={item.backgroundColor} name={item.icon} size={80} />
       <CustomText style={styles.label}>{item.label}</CustomText>
     </TouchableOpacity>
   );
